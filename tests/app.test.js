@@ -9,10 +9,6 @@ test('should be able to get to the root route', async () => {
 
 test('should return a list of all movies from the database', async () => {
   const movies = await response(app).get('/api/movies').expect(200);
-  movies.expect().toBe({
-    data: [
-
-    ]
-  })
-
+  expect(movies.body).not.toBeNull();
+  console.log(movies.body);
 });
