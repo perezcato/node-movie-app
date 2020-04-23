@@ -4,9 +4,9 @@ exports.up = (knex) => knex.schema.createTable('movies', (table) => {
   table.string('title').notNullable();
   table.string('description').notNullable();
   table.string('cover').nullable();
-  table.decimal('imdb_rating').nullable();
-  table.date('release_data').nullable();
-  table.timestamps();
+  table.integer('imdb_rating').nullable();
+  table.string('release_date').nullable();
+  table.timestamps(true, true);
 });
 
 exports.down = (knex) => knex.schema.dropTableIfExists('movies');

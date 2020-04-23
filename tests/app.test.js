@@ -10,5 +10,8 @@ test('should be able to get to the root route', async () => {
 test('should return a list of all movies from the database', async () => {
   const movies = await response(app).get('/api/movies').expect(200);
   expect(movies.body).not.toBeNull();
-  console.log(movies.body);
+});
+
+test('should be able to create a new movie in the database', async () => {
+  //const movies = await response(app).post('/api/movies')
 });

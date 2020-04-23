@@ -1,23 +1,11 @@
-const Schema = require('validate.js');
+const Joi = require('@hapi/joi');
 
-const moviesValidate = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  cover: {
-    type: String,
-  },
-  imdb_rating: {
-    type: Number,
-  },
-  release_data: {
-    type: Date,
-  },
+const movieValidator = Joi.object({
+  title: Joi.string().required(),
+  description: Joi.string().required(),
+  cover: Joi.string(),
+  imdb_rating: Joi.number(),
+  release_date: Joi.date().iso(),
 });
 
-module.exports = moviesValidate;
+module.exports = movieValidator;
