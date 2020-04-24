@@ -46,14 +46,16 @@ exports.getMovies = async (req, res, next) => {
 };
 
 exports.createMovie = async (req, res, next) => {
+  //console.log('here');
   try {
     const movieData = await movieValidator.validate(req.body);
     if (movieData.error) throw new Error(movieData.error);
     let movie;
     if (req.file) movie = { ...movieData.value, cover: `covers/${req.file.filename}` };
-    else movie = { ...movieData };
+    else movie = { ...movieData.value};
     await knex('movies')
       .insert(movie);
+    res.status(201);
     res.json({ message: 'movie added' });
   } catch (e) {
     next(e);
