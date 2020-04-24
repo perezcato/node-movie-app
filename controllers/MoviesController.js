@@ -46,7 +46,6 @@ exports.getMovies = async (req, res, next) => {
 };
 
 exports.createMovie = async (req, res, next) => {
-  //console.log('here');
   try {
     const movieData = await movieValidator.validate(req.body);
     if (movieData.error) throw new Error(movieData.error);
