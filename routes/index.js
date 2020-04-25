@@ -4,13 +4,21 @@ const {
   getMovies, createMovie, deleteMovie, getMovie, updateMovie, upload,
 } = require('../controllers/MoviesController');
 
+const { signUp, signIn, protect } = require('../controllers/UserController');
 
+
+// User routes for
 const router = express.Router();
+router.post('/signup', signUp);
+router.post('/signin', signIn);
 
-router.get('/movies', getMovies);
-router.post('/movies', upload.single('movie_cover'), createMovie);
-router.get('/movies/:id', getMovie);
-router.put('/movies/:id', updateMovie);
-router.delete('/movies/:id', deleteMovie);
+// Movie Routes
+router.use('/movies', protect);
+router.get('/movies', getMovies)
+  .post('/movies', upload.single('movie_cover'), createMovie);
+
+router.get('/movies/:id', getMovie)
+  .put('/movies/:id', updateMovie)
+  .delete('/movies/:id', deleteMovie);
 
 module.exports = router;

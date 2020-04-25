@@ -6,6 +6,7 @@ exports.up = (knex) => knex.schema.createTable('movies', (table) => {
   table.string('cover').nullable();
   table.integer('imdb_rating').nullable();
   table.string('release_date').nullable();
+  table.integer('user_id').unsigned();
   table.timestamps(true, true);
 });
 

@@ -3,6 +3,7 @@ const multer = require('multer');
 const knex = require('../knex');
 const movieValidator = require('../validators/movies.validate');
 
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, `${process.cwd()}/movie-covers`);
